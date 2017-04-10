@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Listing Attachments</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @attachments.each do |attachment| %>
+        <tr>
+          <td><%= attachment.filename %></td>
+          <td><%= button_to 'Download', attachment, method: :get %></td>
+          <td><%= button_to 'Destroy', attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New Attachment', new_attachment_path %>
+</div>
