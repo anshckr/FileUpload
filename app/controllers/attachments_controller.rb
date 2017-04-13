@@ -1,9 +1,9 @@
-class AttachmentsController < ApplicationController 
+class AttachmentsController < ApplicationController
   before_action :authorize
   before_action :set_attachment, only: [:show, :destroy]
 
   def index
-    @attachments = Attachment.all
+    @attachments = current_user.attachments
   end
 
   def show
@@ -13,19 +13,18 @@ class AttachmentsController < ApplicationController
   end
 
   def new
-    @attachment = Attachment.new
+    @attachment = current_user.attachments.build
   end
 
   def create
-    @attachment = Attachment.new(attachment_params)
+    @attachment = current_user.attachments.build(attachment_params)
 
     respond_to do |format|
       if @attachment.save
-        format.html { redirect_to attachments_path, notice: 'Attachment was successfully uploaded.' }
-        format.json { render action: 'show', status: :created, location: @attachment }
+        flash[:notice] = "Successfully created new attachment"
+        redirect_to user_attachments_path current_user.id
       else
-        format.html { render action: 'new' }
-        format.json { render status: :unprocessable_entity }
+        render :action => 'new'
       end
     end
   end
@@ -33,18 +32,17 @@ class AttachmentsController < ApplicationController
   def destroy
     @attachment.destroy
     respond_to do |format|
-      format.html { redirect_to attachments_url }
+      format.html { redirect_to user_attachments_path current_user.id }
       format.json { head :no_content }
     end
   end
 
   private
   def set_attachment
-  	@attachment = Attachment.find(params[:id])
+    @attachment = current_user.attachments.find(params[:id])
   end
-  
+
   def attachment_params
     params.require(:attachment).permit(:file)
   end
 end
-

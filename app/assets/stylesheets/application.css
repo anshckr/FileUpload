@@ -24,8 +24,14 @@ body {
 }
 
 .container {
-    padding-left: 20px;
-    width: 100%;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+.header {
+  margin-top: 20px;
 }
 
 /* FORM PAGES */
@@ -60,17 +66,51 @@ input[type=password] {
     text-transform: uppercase;
 }
 
-.field, .actions {
+.field,
+.actions {
     margin-bottom: 10px;
 }
 
 a {
-  color: #000;
-  &:visited {
-    color: #666;
-  }
-  &:hover {
-    background-color: #000;
-    color: #fff;
-  }
+    color: #000;
+    &:visited {
+        color: #666;
+    }
+    &:hover {
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+.flash_notice,
+.flash_alert,
+.flash_error {
+    padding: 8px 35px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    margin-bottom: 20px;
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.flash_notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+}
+
+.flash_alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+}
+
+.flash_error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
 }

@@ -1,4 +1,6 @@
 class Attachment < ApplicationRecord
+  belongs_to :user
+
   def initialize(params = {})
     @file = params.delete(:file)
     super

@@ -1,7 +1,9 @@
-<%= form_for(@attachment) do |f| %>
-  <div class="field">
-    <%= f.file_field :file %>
-  </div>
+<%= form_for current_user do |f| %>
+  <%= f.fields_for :attachment do |ff| %>
+    <div class="field">
+      <%= ff.file_field :file %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -7,12 +7,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <% if current_user %>
-      Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
-    <% else %>
-      <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
-    <% end %>
     <div class="container">
+      <%= content_tag(:div, flash[:error], :class => "flash_error") if flash[:error] %>
+      <%= content_tag(:div, flash[:notice], :class => "flash_notice") if flash[:notice] %>
+      <%= content_tag(:div, flash[:alert], :class => "flash_alert") if flash[:alert] %>
+      <div class="header">
+        <% if current_user %>
+          Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+        <% else %>
+          <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
   </body>
